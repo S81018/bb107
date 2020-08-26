@@ -1,7 +1,7 @@
 // -----------------------到达index页面，渲染头像和欢迎语----------------
 function getUserInfo() {
     $.ajax({
-        url: 'http://ajax.frontend.itheima.net/my/userinfo',
+        url: '/my/userinfo',
         success: function (res) {
             console.log(res);
             if (res.status === 0) {
@@ -16,10 +16,12 @@ function getUserInfo() {
                     $('.text-avatar').text(first).css('display', 'inline-block');
                 }
             }
+            eles
+            if (res.status === 1 && res.message === '身份认证失败！') {
+                localStorage.removeItem('token');
+                location.href = '/login.html';
+            }
         },
-        headers: {
-            Authorization: localStorage.getItem('token')
-        }
     });
 }
 getUserInfo();
